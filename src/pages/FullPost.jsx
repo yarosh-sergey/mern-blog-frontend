@@ -15,11 +15,12 @@ import { fetchPostById } from '../redux/slices/posts';
 export const FullPost = () => {
   const dispatch = useDispatch();
   const { id } = useParams();
-  const { activePost, status } = useSelector((state) => state.posts.posts);
+  const post = useSelector((state) => state.posts.activePost);
   const commentsData = useSelector((state) => state.comments);
   const userData = useSelector((state) => state.auth.data);
+  const activePost = post.item;
 
-  const isPostLoading = status === 'loading';
+  const isPostLoading = post.status === 'loading';
   const isCommentsLoading = commentsData.status === 'loading';
 
   useEffect(() => {

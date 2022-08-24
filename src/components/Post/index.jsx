@@ -5,7 +5,7 @@ import DeleteIcon from '@mui/icons-material/Clear';
 import EditIcon from '@mui/icons-material/Edit';
 import EyeIcon from '@mui/icons-material/RemoveRedEyeOutlined';
 import CommentIcon from '@mui/icons-material/ChatBubbleOutlineOutlined';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import styles from './Post.module.scss';
 import { UserInfo } from '../UserInfo';
@@ -30,6 +30,7 @@ export const Post = ({
 }) => {
   const dispatch = useDispatch();
   const [selected, setSelected] = React.useState(false);
+  const navigate = useNavigate();
 
   if (isLoading) {
     return <PostSkeleton />;
@@ -38,6 +39,7 @@ export const Post = ({
   const onClickRemove = () => {
     if (window.confirm('Вы действительно хотите удалить статью?')) {
       dispatch(fetchRemovePost(id));
+      navigate('/');
     }
   };
 

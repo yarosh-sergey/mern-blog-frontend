@@ -35,9 +35,12 @@ export const fetchRemovePost = createAsyncThunk(
 );
 
 const initialState = {
+  activePost:{
+    item: {},
+    status: 'loading',
+  },
   posts: {
     items: [],
-    activePost: {},
     status: 'loading',
   },
   tags: {
@@ -65,16 +68,16 @@ const postsSlice = createSlice({
     },
 
     [fetchPostById.pending]: (state) => {
-      state.posts.activePost = {};
-      state.posts.status = 'loading';
+      state.activePost.item = {};
+      state.activePost.status = 'loading';
     },
     [fetchPostById.fulfilled]: (state, action) => {
-      state.posts.activePost = action.payload;
-      state.posts.status = 'loaded';
+      state.activePost.item = action.payload;
+      state.activePost.status = 'loaded';
     },
     [fetchPostById.rejected]: (state) => {
-      state.posts.activePost = {};
-      state.posts.status = 'error';
+      state.activePost.item = {};
+      state.activePost.status = 'error';
     },
 
     [fetchTags.pending]: (state) => {
