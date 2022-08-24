@@ -37,7 +37,7 @@ export const FullPost = () => {
         id={activePost._id}
         title={activePost.title}
         imageUrl={
-          activePost.imageUrl && `http://localhost:4444${activePost.imageUrl}`
+          activePost.imageUrl && `${process.env.REACT_APP_API_URL}${activePost.imageUrl}`
         }
         user={activePost.user}
         createdAt={activePost.createdAt}
